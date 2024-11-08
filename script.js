@@ -5,7 +5,9 @@ let sizeNewGrid = 16;
 resetButton.addEventListener("click", askSize);
 
 function askSize() {
-    sizeNewGrid = prompt("Size of the new grid:");
+    do {
+        sizeNewGrid = prompt("Size of the new grid:");
+    } while (sizeNewGrid > 100);
     deleteChild();
     newGrid();    
 }
@@ -21,6 +23,8 @@ function newGrid() {
         const div = document.createElement("div");
         parent.appendChild(div);
         div.classList.add("gridDiv");
+        div.style.flexBasis = `${960/sizeNewGrid}px`;
+        div.style.height = `${960/sizeNewGrid}px`;
     }
     const childrenDiv = document.querySelectorAll(".gridDiv");
     Array.from(childrenDiv).forEach(gridDiv => {
